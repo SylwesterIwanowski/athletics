@@ -1,16 +1,32 @@
 import React from 'react';
-import bootstrap from 'bootstrap';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import { Navbar } from './util/Navbar';
+import { DoMeasurement } from './views/DoMeasurement';
+import { TablesMeasurement, TablesMeasurementConnected } from './views/TablesMeasurement';
+
 
 
 
 function App() {
+
+
+
   return (
-    <div>
-      <Navbar/>
-      
-     
-    </div>
+    <Provider store={store} >
+      <div>
+        <Navbar />
+        <DoMeasurement />
+        <TablesMeasurementConnected />
+
+
+
+
+
+
+
+      </div>
+    </Provider>
   );
 }
 
