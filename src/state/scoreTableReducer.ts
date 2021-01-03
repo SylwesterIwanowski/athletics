@@ -2,11 +2,13 @@
 const ADD_PLAYER = 'ADD_PLAYER';
 
 
-export const addPlayerAction = () => {
+export const addPlayerAction = (name: string, surname: string, score: number) => {
     return {
         type: ADD_PLAYER,
         payload: {
-            name: 's0',
+            name,
+            surname,
+            score,
         }
     }
 }
@@ -14,9 +16,8 @@ export const addPlayerAction = () => {
 
 const initialState = {
     players: [
-        { name: 'Sylwek', surname: 'Iwanowski', score: 10 },
-        {name: 'Sylwek2', surname: 'Iwanowski2', score: 20},
-    ]
+        { name: '', surname: '', score: 0 },
+        ]
 }
 
 
@@ -28,8 +29,8 @@ export const scoreTableReducer = (state = initialState, action: any) => {
                 ...state,
                 players: [...state.players, {
                     name: action.payload.name,
-                    surname: action.payload.name,
-                    score: action.payload.name,
+                    surname: action.payload.surname,
+                    score: action.payload.score,
                 }]
             }
         }

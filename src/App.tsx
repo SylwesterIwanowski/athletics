@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { Navbar } from './util/Navbar';
-import { DoMeasurement } from './views/DoMeasurement';
+import { Navbars } from './util/Navbars';
+import { DoMeasurement, DoMeasurementConnected } from './views/DoMeasurement';
 import { TablesMeasurement, TablesMeasurementConnected } from './views/TablesMeasurement';
 
 
@@ -15,14 +15,9 @@ function App() {
   return (
     <Provider store={store} >
       <div>
-        <Navbar />
-        <DoMeasurement />
+        <Navbars />
+        <DoMeasurementConnected />
         <TablesMeasurementConnected />
-
-
-
-
-
 
 
       </div>

@@ -1,28 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Formik, Field, Form, } from 'formik';
+import { addPlayerAction } from '../state/scoreTableReducer';
+import { connect } from 'react-redux';
+
+
+
+interface Props {
+    addPlayer: (name: string, surname: string, score: number) => void;
+}
 
 
 
 
-export const DoMeasurement: React.FC = () => {
+export const DoMeasurement: React.FC<Props> = (props) => {
 
     return (
         <div>
-            <h1>WYKONAJ TEST</h1>
-            <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Wybierz test
-  </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" >60m</a>
-                    <a className="dropdown-item" href="#">600m</a>
-                    <a className="dropdown-item" href="#">1000m</a>
-                    <a className="dropdown-item" href="#">p. palantowa</a>
-                    <a className="dropdown-item" href="#">skok w dal</a>
-                </div>
-            </div>
-            <p></p>
             <Formik
                 initialValues={{
                     firstName: '',
@@ -30,7 +23,9 @@ export const DoMeasurement: React.FC = () => {
                     score: '',
                 }}
                 onSubmit={(values) => {
-                    alert(JSON.stringify(values, null, 2));
+                    console.log("valius");
+                    console.log(values);
+                    props.addPlayer(values.firstName, values.lastName, Number(values.score));
                 }}
             >
                 <Form>
@@ -59,3 +54,20 @@ export const DoMeasurement: React.FC = () => {
     );
 }
 
+
+const mapStateToProps = (state: any) => {
+    console.log(state)
+    return {
+
+    }
+}
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addPlayer: ((name: string, surname: string, score: number) => {
+            dispatch(addPlayerAction(name, surname, score))
+        })
+
+    }
+}
+
+export const DoMeasurementConnected = connect(mapStateToProps, mapDispatchToProps)(DoMeasurement);

@@ -10,7 +10,7 @@ export interface PlayerResult {
 
 interface Props {
     _scoreTable: Array<PlayerResult>;
-    xd: any;
+
 }
 
 export const TablesMeasurement: React.FC<Props> = (props) => {
@@ -39,7 +39,7 @@ export const TablesMeasurement: React.FC<Props> = (props) => {
                     </tr>
                 ))}
             </tbody>
-            <button onClick={() => props.xd()}>sdse</button>
+
         </table>
 
     )
@@ -53,9 +53,7 @@ const mapStateToProps = (state: any) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        xd: (() => {
-            dispatch(addPlayerAction())
-        })
+
     }
 }
 
