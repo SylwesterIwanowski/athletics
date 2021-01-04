@@ -1,0 +1,15 @@
+a.navbarLink {
+    margin-top: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: rgb(213, 219, 226);
+
+}
+
+a.navbarLink:hover {
+    margin-top: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    color: rgb(245, 248, 250);
+
+}
