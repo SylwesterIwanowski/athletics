@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Formik } from "formik";
+import {Form, Formik} from "formik";
 import { GroupModel } from "../model/GroupModel";
 import { SelectGroup } from "./SelectGroup";
 import { emptyPerformTestModel, PerformTestModel } from "../model/PerformTest.model";
+import { SelectWrapper } from './SelectWrapper';
+import {SelectPlayer} from "./SelectPlayer";
+import {SelectedPlayer} from "./SelectedPlayer";
 
 export const PerformTest: React.FC = () => {
-    const handleSubmit = (values: any) => {
+    const handleSubmit = (values: PerformTestModel) => {
         console.log(values);
     }
 
@@ -29,9 +32,24 @@ export const PerformTest: React.FC = () => {
             initialValues={emptyPerformTestModel()}
             onSubmit={handleSubmit}
         >
-            <SelectGroup
-                groups={groups}
-            />
+            <Form>
+                Wybierz grupę:
+                <SelectGroup
+                    groups={groups}
+                />
+                Wybierz zawodnika:
+                <SelectPlayer />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <h2>Selected player:</h2>
+                <SelectedPlayer />
+                <br />
+                <button type="submit">kliknij</button>
+            </Form>
         </Formik>
     );
 };

@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {GroupModel} from "../model/GroupModel";
-import Select from "react-select";
+import {SelectWrapper} from "./SelectWrapper";
+import {axiosInstance} from "./axiosInstance";
+import {useSetFormikField} from "./useSetFormikField";
 
 interface Props {
     groups: Array<GroupModel>;
@@ -10,35 +12,31 @@ export const SelectGroup: React.FC<Props> = (props) => {
     const {
         groups,
     } = props;
-    const [ value, setValue ] = useState<GroupModel>()
 
-    const handleChange = (val: any) => {
-        setValue(val);
-    }
-
-    const mappedOptions = groups.map((group) => {
-        return {
-            ...group,
-        }
-    })
-
-    const formatLabel = (option: GroupModel) => {
+    const formatLabel = (option: GroupModel): string => {
         return option.name;
     }
 
-    const getOptionValue = (option: any) => {
-        return option.id;
-    }
+    const setPlayers = useSetFormikField('players');
+
+    const handleUpdatePlayers = () => {
+        const headers = {
+        };
+        const axiosInstance1 = axiosInstance();
+        const instance = axiosInstance1.create({ headers })
+        instance.get('http://localhost:3001/players').then((response) => {
+            console.log('response');
+            console.log(response);
+            setPlayers(response.data.players)
+        })
+    };
 
     return (
-        <>
-            <Select
-                onChange={handleChange}
-                value={value}
-                options={mappedOptions}
-                formatOptionLabel={formatLabel}
-                getOptionValue={getOptionValue}
-            />
-        </>
+        <SelectWrapper<GroupModel>
+            name="group"
+            options={groups}
+            getLabel={formatLabel}
+            onChange={handleUpdatePlayers}
+        />
     );
 };

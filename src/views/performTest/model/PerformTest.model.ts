@@ -8,6 +8,7 @@ export interface PerformTestModel {
     group: GroupModel;
     players: Array<PlayerModel>;
     test: TestModel
+    selectedPlayer: PlayerModel;
 }
 
 export const emptyPerformTestModel = (): PerformTestModel => {
@@ -28,6 +29,14 @@ export const emptyPerformTestModel = (): PerformTestModel => {
             id: 2,
             name: 'Bieg 60m',
             scoreType: ScoreTypeModel.NUMBER ,
+        },
+        selectedPlayer: {
+            id: 4,
+            name: 'A',
+            surname: 'A',
+            sex: SexModel.MALE,
+            year: 1900,
+            scores: [],
         }
     }
 }
