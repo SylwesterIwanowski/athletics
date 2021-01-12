@@ -10,22 +10,7 @@ import {SelectedPlayer} from "./SelectedPlayer";
 export const PerformTest: React.FC = () => {
     const handleSubmit = (values: PerformTestModel) => {
         console.log(values);
-    }
-
-    const [groups, setGroups] = useState<Array<GroupModel>>([
-        {
-            name: 'Gr1',
-            id: 1,
-        },
-        {
-            name: 'Gr2',
-            id: 2,
-        },
-        {
-            name: 'Gr3',
-            id: 3,
-        },
-    ]);
+    };
 
     return (
         <Formik<PerformTestModel>
@@ -34,9 +19,7 @@ export const PerformTest: React.FC = () => {
         >
             <Form>
                 Wybierz grupę:
-                <SelectGroup
-                    groups={groups}
-                />
+                <SelectGroup />
                 Wybierz zawodnika:
                 <SelectPlayer />
                 <br />

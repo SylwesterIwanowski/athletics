@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios, {AxiosStatic} from "axios";
 
-export const axiosInstance = () => {
+export const axiosInstance = (): AxiosStatic => {
     return axios;
 }

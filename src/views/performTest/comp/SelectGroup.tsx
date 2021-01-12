@@ -1,30 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {GroupModel} from "../model/GroupModel";
 import {SelectWrapper} from "./SelectWrapper";
-import {axiosInstance} from "./axiosInstance";
 import {useSetFormikField} from "./useSetFormikField";
+import axios from "axios";
+import {useFormikContext} from "formik";
+import {PerformTestModel} from "../model/PerformTest.model";
 
-interface Props {
-    groups: Array<GroupModel>;
-}
-
-export const SelectGroup: React.FC<Props> = (props) => {
-    const {
-        groups,
-    } = props;
+export const SelectGroup: React.FC = () => {
 
     const formatLabel = (option: GroupModel): string => {
         return option.name;
     }
 
+    const { values } = useFormikContext<PerformTestModel>();
     const setPlayers = useSetFormikField('players');
+    const setGroups = useSetFormikField('groups');
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/groups').then((response) => {
+            console.log('response');
+            console.log(response);
+            setGroups(response.data.groups);
+        })
+
+    }, [  ])
 
     const handleUpdatePlayers = () => {
-        const headers = {
-        };
-        const axiosInstance1 = axiosInstance();
-        const instance = axiosInstance1.create({ headers })
-        instance.get('http://localhost:3001/players').then((response) => {
+        axios.get('http://localhost:3001/players').then((response) => {
             console.log('response');
             console.log(response);
             setPlayers(response.data.players)
@@ -34,7 +36,7 @@ export const SelectGroup: React.FC<Props> = (props) => {
     return (
         <SelectWrapper<GroupModel>
             name="group"
-            options={groups}
+            options={values.groups}
             getLabel={formatLabel}
             onChange={handleUpdatePlayers}
         />

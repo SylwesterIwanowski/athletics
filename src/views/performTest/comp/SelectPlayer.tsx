@@ -1,8 +1,8 @@
 import React from 'react';
-import {SelectWrapper} from "./SelectWrapper";
-import {PlayerModel} from "../model/PlayerModel";
-import {useFormikContext} from "formik";
-import {PerformTestModel} from "../model/PerformTest.model";
+import { SelectWrapper } from "./SelectWrapper";
+import { PlayerModel } from "../model/PlayerModel";
+import { useFormikContext } from "formik";
+import { PerformTestModel } from "../model/PerformTest.model";
 
 export const SelectPlayer: React.FC = () => {
 
@@ -22,3 +22,6 @@ export const SelectPlayer: React.FC = () => {
         </>
     );
 };
+
+
+

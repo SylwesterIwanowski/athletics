@@ -5,18 +5,17 @@ import {SexModel} from "./SexModel";
 import {ScoreTypeModel} from "./ScoreTypeModel";
 
 export interface PerformTestModel {
-    group: GroupModel;
+    group: GroupModel | null;
     players: Array<PlayerModel>;
     test: TestModel
-    selectedPlayer: PlayerModel;
+    selectedPlayer: PlayerModel | null;
+    groups: Array<GroupModel>;
 }
 
 export const emptyPerformTestModel = (): PerformTestModel => {
     return {
-        group: {
-            id: 1,
-            name: 'As',
-        },
+        groups: [],
+        group: null,
         players: [{
             id: 4,
             name: 'A',
@@ -30,13 +29,6 @@ export const emptyPerformTestModel = (): PerformTestModel => {
             name: 'Bieg 60m',
             scoreType: ScoreTypeModel.NUMBER ,
         },
-        selectedPlayer: {
-            id: 4,
-            name: 'A',
-            surname: 'A',
-            sex: SexModel.MALE,
-            year: 1900,
-            scores: [],
-        }
+        selectedPlayer: null,
     }
 }
